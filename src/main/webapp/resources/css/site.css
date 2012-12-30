@@ -1,0 +1,40 @@
+#body {
+}
+
+#body #left_slidebar {
+    background-color:#F2F2F2;
+}
+
+.article {
+    word-wrap: break-word;
+    border-bottom: 1px black solid;
+
+}
+.article p{
+    max-height: 170px;
+}
+
+#footer_content{
+    border-top: 1px solid #808080;
+    text-align: center;
+}
+
+#left_slidebar{
+    overflow:auto;
+}
+
+
+#info1{
+    background-color:#add8e6;
+    height: 150px;
+    margin-bottom: 5px;
+}
+
+#info2{
+    background-color:#add8e6;
+    height: 250px;
+}
+
+.btn_group button{
+    min-width: 100px;
+}
