@@ -8,7 +8,7 @@
         <div class="article">
             <h4>${i.title}</h4>
 
-            <p> ${i.body}
+            <p> ${i.shortBody}
             </p>
 
             <p>${i.loginName}</p>

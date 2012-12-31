@@ -36,4 +36,10 @@
         <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
     </beans:bean>
 
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+
+    <beans:bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <beans:property name="dataSource" ref="dataSource"/>
+    </beans:bean>
+
 </beans:beans>

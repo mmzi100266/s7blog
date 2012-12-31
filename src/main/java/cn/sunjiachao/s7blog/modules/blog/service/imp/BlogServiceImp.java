@@ -25,7 +25,7 @@ public class BlogServiceImp implements IBlogService {
     private IBlogParamsDao blogParamsDao;
 
     @Override
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void createNewBlog(Blog blog, BlogParams blogParams) {
         blog.setCreateTime(new Date());
         blog.setCreateUser(1);
