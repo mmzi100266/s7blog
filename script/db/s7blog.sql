@@ -23,6 +23,7 @@ CREATE TABLE `s7_blog` (
   `blogId` int(16) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `body` longtext NOT NULL,
+  `shortBody` varchar(255) NOT NULL,
   `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updateTime` timestamp NULL DEFAULT NULL,
   `createUser` int(16) NOT NULL,

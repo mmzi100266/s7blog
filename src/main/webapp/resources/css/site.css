@@ -12,6 +12,7 @@
 }
 .article p{
     max-height: 170px;
+    min-height: 120px;
 }
 
 #footer_content{

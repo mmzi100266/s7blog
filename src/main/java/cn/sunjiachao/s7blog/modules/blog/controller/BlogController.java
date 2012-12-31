@@ -3,6 +3,11 @@ package cn.sunjiachao.s7blog.modules.blog.controller;
 import cn.sunjiachao.s7blog.modules.blog.service.IBlogService;
 import cn.sunjiachao.s7common.model.Blog;
 import cn.sunjiachao.s7common.model.BlogParams;
+import cn.sunjiachao.s7common.model.dto.BlogDto;
+import freemarker.template.utility.StringUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 public class BlogController {
@@ -18,20 +24,18 @@ public class BlogController {
     @Autowired
     private IBlogService blogService;
 
-    @RequestMapping(value = "/article", method = RequestMethod.GET)
-    public ModelAndView getBlogContent(HttpServletRequest req, HttpServletResponse resp) {
-        ModelAndView nav = new ModelAndView("article/articleContent");
-        return nav;
-    }
-
     @RequestMapping(value = "/my/post", method = RequestMethod.POST)
-    public String postNewBlog(Blog blog,HttpServletRequest req) {
-        BlogParams blogParams = new BlogParams();
+    public String postNewBlog(Blog blog, HttpServletRequest req) {
         try {
+            String shortBody = Jsoup.clean(blog.getBody(), Whitelist.none());
+            shortBody = StringUtils.abbreviate(shortBody, 200);
+            blog.setShortBody(shortBody);
+            BlogParams blogParams = new BlogParams();
             String ip = req.getRemoteAddr();
             blogParams.setPostIp(ip);
-            blogService.createNewBlog(blog,blogParams);
+            blogService.createNewBlog(blog, blogParams);
         } catch (Exception ex) {
+            ex.printStackTrace();
             return "redirect:/";
         }
         return "redirect:/article/postsuccess";
