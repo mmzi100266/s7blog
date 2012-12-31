@@ -38,7 +38,7 @@ public class HomeController {
 //    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView getBlogContent() {
+    public ModelAndView getHomePageBlogs() {
         List<BlogDto> bds = blogService.getAllBlogDtos();
         ModelAndView nav = new ModelAndView("home/index");
         nav.addObject("blogs", bds);

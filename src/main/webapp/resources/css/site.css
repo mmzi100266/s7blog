@@ -10,9 +10,8 @@
     border-bottom: 1px black solid;
 
 }
-.article p{
+.article .shortBody{
     max-height: 170px;
-    min-height: 120px;
 }
 
 #footer_content{

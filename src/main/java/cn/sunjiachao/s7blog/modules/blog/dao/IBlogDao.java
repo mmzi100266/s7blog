@@ -12,4 +12,6 @@ public interface IBlogDao {
 
     public List<BlogDto> getAllBlogList();
 
+    public BlogDto getBlog(int id);
+
 }

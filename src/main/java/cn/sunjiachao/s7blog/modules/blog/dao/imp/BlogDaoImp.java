@@ -4,6 +4,7 @@ import cn.sunjiachao.s7blog.modules.blog.dao.IBlogDao;
 import cn.sunjiachao.s7common.exception.DataBaseException;
 import cn.sunjiachao.s7common.model.Blog;
 import cn.sunjiachao.s7common.model.dto.BlogDto;
+import cn.sunjiachao.s7common.model.rowmapper.BlogDtoRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -40,18 +41,13 @@ public class BlogDaoImp implements IBlogDao {
     @Override
     public List<BlogDto> getAllBlogList() {
         String sql = "select b.blogId,b.title,b.shortBody,b.createTime,u.loginName from s7_blog as b inner join s7_user as u where b.createUser = 1;";
-        List<BlogDto> blogs = jdbcTemplate.query(sql, new HashMap<String, Object>(), new RowMapper<BlogDto>() {
-            @Override
-            public BlogDto mapRow(ResultSet resultSet, int i) throws SQLException {
-                BlogDto bd = new BlogDto();
-                bd.setBlogId(resultSet.getInt("blogId"));
-                bd.setTitle(resultSet.getString("title"));
-                bd.setShortBody(resultSet.getString("shortBody"));
-                bd.setCreateTime(resultSet.getDate("createTime"));
-                bd.setLoginName(resultSet.getString("loginName"));
-                return bd;
-            }
-        });
+        List<BlogDto> blogs = jdbcTemplate.query(sql, new HashMap<String, Object>(), new BlogDtoRowMapper());
         return blogs;
+    }
+
+    @Override
+    public BlogDto getBlog(int id) {
+        String sql = "select b.title,b.body,b.createTime,u.loginName from s7_user as u inner join " +
+                "(select title,body,createTime,createUser from s7_blog where blogId=14) as b where b.createUser=u.uid";
     }
 }
