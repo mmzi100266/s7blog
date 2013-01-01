@@ -8,6 +8,7 @@ import cn.sunjiachao.s7common.model.rowmapper.BlogDtoRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -47,7 +48,11 @@ public class BlogDaoImp implements IBlogDao {
 
     @Override
     public BlogDto getBlog(int id) {
-        String sql = "select b.title,b.body,b.createTime,u.loginName from s7_user as u inner join " +
-                "(select title,body,createTime,createUser from s7_blog where blogId=14) as b where b.createUser=u.uid";
+        String sql = "select b.blogId,b.title,b.body,b.createTime,u.loginName from s7_user as u inner join " +
+                "(select title,body,createTime,createUser from s7_blog where blogId=:blogId) as b where b.createUser=u.uid";
+        SqlParameterSource p = new MapSqlParameterSource("blogId", id);
+        //return jdbcTemplate.queryForObject(sql, p, new BlogDtoRowMapper());
+        jdbcTemplate.update(sql,p);
+        return null;
     }
 }

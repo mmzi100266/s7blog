@@ -38,4 +38,9 @@ public class BlogServiceImp implements IBlogService {
     public List<BlogDto> getAllBlogDtos() {
         return blogDao.getAllBlogList();
     }
+
+    @Override
+    public BlogDto getBlog(int id) {
+        return blogDao.getBlog(id);
+    }
 }

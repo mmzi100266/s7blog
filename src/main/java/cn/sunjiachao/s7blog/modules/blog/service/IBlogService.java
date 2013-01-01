@@ -13,4 +13,6 @@ public interface IBlogService {
 
     public List<BlogDto> getAllBlogDtos();
 
+    public BlogDto getBlog(int id);
+
 }

@@ -1,3 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<p>content</p>
+
+<h2>${blog.title}</h2>
+
+<p>${blog.body}</p>
