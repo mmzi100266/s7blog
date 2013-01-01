@@ -5,7 +5,8 @@ import cn.sunjiachao.s7blog.modules.blog.dao.IBlogParamsDao;
 import cn.sunjiachao.s7blog.modules.blog.service.IBlogService;
 import cn.sunjiachao.s7common.model.Blog;
 import cn.sunjiachao.s7common.model.BlogParams;
-import cn.sunjiachao.s7common.model.dto.BlogDto;
+import cn.sunjiachao.s7common.model.dto.BlogBodyDto;
+import cn.sunjiachao.s7common.model.dto.BlogShortBodyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -35,12 +36,12 @@ public class BlogServiceImp implements IBlogService {
     }
 
     @Override
-    public List<BlogDto> getAllBlogDtos() {
+    public List<BlogShortBodyDto> getAllBlogDtos() {
         return blogDao.getAllBlogList();
     }
 
     @Override
-    public BlogDto getBlog(int id) {
+    public BlogBodyDto getBlog(int id) {
         return blogDao.getBlog(id);
     }
 }

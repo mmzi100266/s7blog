@@ -1,12 +1,12 @@
 package cn.sunjiachao.s7blog.modules.blog.dao.imp;
 
 import cn.sunjiachao.s7blog.modules.blog.dao.IBlogDao;
-import cn.sunjiachao.s7common.exception.DataBaseException;
 import cn.sunjiachao.s7common.model.Blog;
-import cn.sunjiachao.s7common.model.dto.BlogDto;
-import cn.sunjiachao.s7common.model.rowmapper.BlogDtoRowMapper;
+import cn.sunjiachao.s7common.model.dto.BlogBodyDto;
+import cn.sunjiachao.s7common.model.dto.BlogShortBodyDto;
+import cn.sunjiachao.s7common.model.rowmapper.BlogBodyDtoRowMapper;
+import cn.sunjiachao.s7common.model.rowmapper.BlogShortBodyDtoRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -15,8 +15,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,19 +38,20 @@ public class BlogDaoImp implements IBlogDao {
     }
 
     @Override
-    public List<BlogDto> getAllBlogList() {
+    public List<BlogShortBodyDto> getAllBlogList() {
         String sql = "select b.blogId,b.title,b.shortBody,b.createTime,u.loginName from s7_blog as b inner join s7_user as u where b.createUser = 1;";
-        List<BlogDto> blogs = jdbcTemplate.query(sql, new HashMap<String, Object>(), new BlogDtoRowMapper());
+        List<BlogShortBodyDto> blogs = jdbcTemplate.query(sql, new HashMap<String, Object>(), new BlogShortBodyDtoRowMapper());
         return blogs;
     }
 
     @Override
-    public BlogDto getBlog(int id) {
-        String sql = "select b.blogId,b.title,b.body,b.createTime,u.loginName from s7_user as u inner join " +
-                "(select title,body,createTime,createUser from s7_blog where blogId=:blogId) as b where b.createUser=u.uid";
+    public BlogBodyDto getBlog(int id) {
+//        String sql = "select b.blogId,b.title,b.body,u.createTime,u.loginName from s7_user as u join " +
+//                "(select blogId,title,body,createTime,createUser from s7_blog where blogId=2) as b where b.createUser=u.uid";
+        String sql = "select u.loginName,u.createTime,b.title,b.body,b.blogId from s7_user as u," +
+                "(select blogId,title,body,createTime,createUser from s7_blog where blogId=:blogId) as b " +
+                "where b.createUser = u.uid;";
         SqlParameterSource p = new MapSqlParameterSource("blogId", id);
-        //return jdbcTemplate.queryForObject(sql, p, new BlogDtoRowMapper());
-        jdbcTemplate.update(sql,p);
-        return null;
+        return jdbcTemplate.queryForObject(sql, p, new BlogBodyDtoRowMapper());
     }
 }

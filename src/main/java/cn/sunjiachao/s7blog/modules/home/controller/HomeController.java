@@ -1,15 +1,13 @@
 package cn.sunjiachao.s7blog.modules.home.controller;
 
 import java.util.List;
-import java.util.Locale;
 
 import cn.sunjiachao.s7blog.modules.blog.service.IBlogService;
-import cn.sunjiachao.s7common.model.dto.BlogDto;
+import cn.sunjiachao.s7common.model.dto.BlogShortBodyDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,7 +37,7 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getHomePageBlogs() {
-        List<BlogDto> bds = blogService.getAllBlogDtos();
+        List<BlogShortBodyDto> bds = blogService.getAllBlogDtos();
         ModelAndView nav = new ModelAndView("home/index");
         nav.addObject("blogs", bds);
         return nav;

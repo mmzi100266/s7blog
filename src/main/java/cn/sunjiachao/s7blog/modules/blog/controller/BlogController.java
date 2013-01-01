@@ -3,7 +3,8 @@ package cn.sunjiachao.s7blog.modules.blog.controller;
 import cn.sunjiachao.s7blog.modules.blog.service.IBlogService;
 import cn.sunjiachao.s7common.model.Blog;
 import cn.sunjiachao.s7common.model.BlogParams;
-import cn.sunjiachao.s7common.model.dto.BlogDto;
+import cn.sunjiachao.s7common.model.dto.BlogBodyDto;
+import cn.sunjiachao.s7common.model.dto.BlogShortBodyDto;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
@@ -24,7 +25,7 @@ public class BlogController {
 
     @RequestMapping(value = "/artilce/{id}", method = RequestMethod.GET)
     public ModelAndView toBlogDetailPage(@PathVariable("id") String id) {
-        BlogDto bd = blogService.getBlog(Integer.parseInt(id));
+        BlogBodyDto bd = blogService.getBlog(Integer.parseInt(id));
         ModelAndView mv = new ModelAndView("article/articleContent");
         mv.addObject("blog", bd);
         return mv;
