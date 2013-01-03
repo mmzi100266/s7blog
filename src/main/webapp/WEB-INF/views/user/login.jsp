@@ -10,7 +10,7 @@
 	<div id="login_form">
 		<div class="container">
 			<form class="form-signin" method="post"
-				action="<%=basePath%>my/loginSubmit">
+				action="<%=basePath%>my/loginSubmit"> 
 				<h2 class="form-signin-heading">Please sign in</h2>
 				<input name="loginName" type="text" class="input-block-level"
 					placeholder="请输入账号"> <input name="password" type="password"
