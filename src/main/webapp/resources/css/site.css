@@ -38,3 +38,16 @@
 .btn_group button{
     min-width: 100px;
 }
+
+#blog_content{
+    min-height: 600px;
+}
+
+.myinfo{
+    color: #000000;
+    display: block;
+    font-size: 14pt;
+    font-weight: bold;
+    margin: 0 0 12px;
+    word-wrap: break-word;
+}
