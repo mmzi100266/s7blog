@@ -40,9 +40,9 @@
         <put-attribute name="body" value="/WEB-INF/views/article/postsuccess.jsp"/>
     </definition>
 
-    <definition name="user/index" extends="layoutTemplate2">
+    <definition name="user/login" extends="layoutTemplate2">
         <put-attribute name="title" value="UserLogin"/>
-        <put-attribute name="body" value="/WEB-INF/views/user/index.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/login.jsp"/>
     </definition>
 
 </tiles-definitions>
