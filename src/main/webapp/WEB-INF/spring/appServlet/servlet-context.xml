@@ -26,7 +26,8 @@
     <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
         <beans:property name="definitions">
             <beans:list>
-                <beans:value>/WEB-INF/tiles.xml</beans:value>
+                <beans:value>/WEB-INF/tiles/admin.xml</beans:value>
+                <beans:value>/WEB-INF/tiles/common.xml</beans:value>
             </beans:list>
         </beans:property>
     </beans:bean>
@@ -41,5 +42,19 @@
     <beans:bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <beans:property name="dataSource" ref="dataSource"/>
     </beans:bean>
+
+    <beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <beans:property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <beans:property name="url" value="${jdbc.url}"/>
+        <beans:property name="username" value="${jdbc.username}"/>
+        <beans:property name="password" value="${jdbc.password}"/>
+        <beans:property name="maxActive" value="30"/>
+        <beans:property name="maxIdle" value="2"/>
+        <beans:property name="maxWait" value="5000"/>
+    </beans:bean>
+
+    <context:property-placeholder location="classpath:property/jdbc.properties"/>
+
+    <context:component-scan base-package="cn.sunjiachao.s7blog.modules"/>
 
 </beans:beans>

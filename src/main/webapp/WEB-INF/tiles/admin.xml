@@ -3,15 +3,15 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
-	<definition name="adminTemplate" template="/WEB-INF/views/layout_admin.jsp">
+	<definition name="adminTemplate" template="/WEB-INF/views/layout/admin.jsp">
 		<put-attribute name="title" value="admin_page" />
-		<put-attribute name="jscss" value="/WEB-INF/views/jscss_admin.jsp" />
+        <put-attribute name="jscss" value="/WEB-INF/views/layout/jscss/jscss_common.jsp"/>
 		<put-attribute name="body" value="" />
 	</definition>
 
 	<definition name="admin/index" extends="adminTemplate">
 		<put-attribute name="title" value="admin_page" />
-		<put-attribute name="jscss" value="/WEB-INF/views/jscss_admin.jsp" />
+        <put-attribute name="jscss" value="/WEB-INF/views/layout/jscss/jscss_common.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/admin/index.jsp" />
 	</definition>
 </tiles-definitions>
