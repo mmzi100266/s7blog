@@ -23,14 +23,14 @@
 
     </div>
 
-    <form action="<%=basePath%>article/newcomment" method="post">
-        <div class="controls controls-row">
-            <textarea id="comment_title" class="span4" type="text" placeholder="内容" rows="2"></textarea>
-            <textarea class="span8" type="text" placeholder="留言内容" rows="5"></textarea>
-            <button id="submit_comment_btn" class="btn btn-large btn-block btn-primary" type="submit">
-                留言
-            </button>
-        </div>
+    <form action="<%=basePath%>article/newcomment" method="post" class="form-inline">
+        <fieldset>
+            <legend>留言</legend>
+            <div class="controls controls-row" id="comment_div">
+                <textarea class="span8"></textarea>
+                <button class="btn btn-large btn-primary span4" type="button">Large button</button>
+            </div>
+        </fieldset>
     </form>
 </div>
 
@@ -39,9 +39,4 @@
         min-height: 500px;
     }
 
-    #submit_comment_btn {
-        width: 275px;
-        position: relative;
-        top: -55px;
-    }
 </style>
