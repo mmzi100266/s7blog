@@ -9,7 +9,7 @@
 
     <c:forEach items="${blogs}" var="i">
         <div class="article">
-            <a href="<%=basePath%>artilce/${i.blogId}"><h4 class="title">${i.title} </h4></a>
+            <a href="<%=basePath%>article/${i.blogId}"><h4 class="title">${i.title} </h4></a>
 
             <p class="shortBody"> ${i.shortBody}
             </p>

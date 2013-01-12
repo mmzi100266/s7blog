@@ -2,6 +2,8 @@ package cn.sunjiachao.s7blog.modules.comment.dao;
 
 import cn.sunjiachao.s7common.model.Comment;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: se7en
@@ -12,5 +14,7 @@ import cn.sunjiachao.s7common.model.Comment;
 public interface ICommentDao {
 
     public void saveComment(Comment comment);
+
+    public List<Comment> listCommentsByBlog(int blogId);
 
 }

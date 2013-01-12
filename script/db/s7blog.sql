@@ -12,12 +12,10 @@ File Encoding         : 65001
 
 Date: 2012-12-28 11:27:02
 */
+
+CREATE DATABASE IF NOT EXISTS s7blog default charset utf8 COLLATE utf8_general_ci;
+
 USE s7blog;
-
-
-SET FOREIGN_KEY_CHECKS=0;
-
-
 
 -- ----------------------------
 -- Table structure for `s7_blog`

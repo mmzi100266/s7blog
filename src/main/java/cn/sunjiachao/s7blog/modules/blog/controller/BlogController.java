@@ -23,7 +23,7 @@ public class BlogController {
     @Autowired
     private IBlogService blogService;
 
-    @RequestMapping(value = "/artilce/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
     public ModelAndView toBlogDetailPage(@PathVariable("id") String id) {
         BlogBodyDto bd = blogService.getBlog(Integer.parseInt(id));
         ModelAndView mv = new ModelAndView("article/articleContent");
