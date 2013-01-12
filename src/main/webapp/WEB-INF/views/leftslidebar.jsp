@@ -6,7 +6,7 @@
 %>
 <div id="left_slidebar" class="span3">
     <div class="row" id="post_new">
-        <p><a>发表内容</a></p>
+        <p><a href="<%=basePath%>my/newarticle">发表内容</a></p>
     </div>
     <div class="row" id="blog_category">
         <div id="category_titile">

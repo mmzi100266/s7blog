@@ -25,6 +25,7 @@ public class CommentController {
     @ResponseBody
     public JsonResponse postComment(Comment comment) {
         comment.setCreateTime(new Date());
+        comment.setGuestName("test");
         commentService.createNewComment(comment);
         result.setMessage("发表留言成功！");
         return result;

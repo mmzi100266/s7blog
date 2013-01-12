@@ -87,7 +87,7 @@ CREATE TABLE `s7_category` (
 DROP TABLE IF EXISTS `s7_comment`;
 CREATE TABLE `s7_comment` (
   `cid` int(16) NOT NULL AUTO_INCREMENT,
-  `title` varchar(20) NOT NULL,
+  `guestName` varchar(20) ,
   `body` varchar(100) NOT NULL,
   `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `belongTo` int(16) NOT NULL,
