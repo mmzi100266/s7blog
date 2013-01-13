@@ -26,8 +26,12 @@ public class CommentController {
     public JsonResponse postComment(Comment comment) {
         comment.setCreateTime(new Date());
         comment.setGuestName("test");
-        commentService.createNewComment(comment);
-        result.setMessage("发表留言成功！");
+        try {
+            commentService.createNewComment(comment);
+            result.setMessage("发表留言成功！");
+        } catch (Exception ex) {
+            result.setMessage("发表留言失败啦！");
+        }
         return result;
     }
 
