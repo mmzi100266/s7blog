@@ -11,9 +11,9 @@
 /*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
 -- Dumping database structure for s7blog
-DROP DATABASE IF EXISTS `s7blog`;
-CREATE DATABASE IF NOT EXISTS `s7blog` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `s7blog`;
+-- DROP DATABASE IF EXISTS `s7blog`;
+-- CREATE DATABASE IF NOT EXISTS `s7blog` /*!40100 DEFAULT CHARACTER SET utf8 */;
+-- USE `s7blog`;
 
 
 -- Dumping structure for table s7blog.s7_blog
