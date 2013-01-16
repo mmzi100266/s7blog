@@ -47,8 +47,6 @@ public class BlogDaoImp implements IBlogDao {
 
     @Override
     public BlogBodyDto getBlog(int id) {
-//        String sql = "select b.blogId,b.title,b.body,u.createTime,u.loginName from s7_user as u join " +
-//                "(select blogId,title,body,createTime,createUser from s7_blog where blogId=2) as b where b.createUser=u.uid";
         String sql = "SELECT u.loginName,u.createTime,b.title,b.body,b.blogId FROM s7_user AS u," +
                 "(SELECT blogId,title,body,createTime,createUser FROM s7_blog WHERE blogId=:blogId) AS b " +
                 "WHERE b.createUser = u.uid;";
@@ -59,7 +57,17 @@ public class BlogDaoImp implements IBlogDao {
     @Override
     public Page<BlogShortBodyDto> getBlogByPage(int currentPage, int numsPerPage) {
         String sql_rows = "SELECT count(*) FROM s7_blog WHERE createUser = 1;";
-        int totalRows = jdbcTemplate.queryForInt(sql_rows, new HashMap<String, String>());
-        return null;
+        int totalRows = jdbcTemplate.queryForInt(sql_rows, new HashMap<String, String>());//取得行数
+        
+        currentPage = (currentPage < 1) ? 1 : currentPage; 
+        numsPerPage = (numsPerPage < 1) ? 1 : numsPerPage;
+        int startIndex = (currentPage - 1) * numsPerPage;
+        String sql_page = "select u.loginName,b.shortBody,b.createTime,b.title,b.blogId from s7_blog as b inner join "
+        		+ "(select uid,loginName from s7_user where uid = 1) as u limit :start,:end";
+        MapSqlParameterSource p = new MapSqlParameterSource();
+        p.addValue("start", startIndex).addValue("end", numsPerPage);
+        List<BlogShortBodyDto> list = jdbcTemplate.query(sql_page, p, new BlogShortBodyDtoRowMapper());
+        Page<BlogShortBodyDto> page = new Page<>(list, totalRows, currentPage, numsPerPage);
+        return page;
     }
 }

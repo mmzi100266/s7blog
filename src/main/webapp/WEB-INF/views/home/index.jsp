@@ -9,7 +9,7 @@
 %>
 <div class="span9">
 
-	<c:forEach items="${blogs}" var="i">
+	<c:forEach items="${page.list}" var="i">
 		<div class="article">
 			<a href="<%=basePath%>article/${i.blogId}"><h4 class="title">${i.title}
 				</h4></a>

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.sunjiachao.s7blog.modules.blog.service.IBlogService;
 import cn.sunjiachao.s7common.model.dto.BlogShortBodyDto;
+import cn.sunjiachao.s7common.model.web.Page;
 
 /**
  * Handles requests for the application home page.
@@ -25,11 +26,20 @@ public class HomeController {
 	@Autowired
 	private IBlogService blogService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/old", method = RequestMethod.GET)
 	public ModelAndView getHomePageBlogs() {
 		List<BlogShortBodyDto> bds = blogService.getAllBlogDtos();
 		ModelAndView nav = new ModelAndView("home/index");
 		nav.addObject("blogs", bds);
+		return nav;
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView getBlogsByPage(int currentPage,int numsPerPage){
+		ModelAndView nav = new ModelAndView();
+		Page<BlogShortBodyDto> page = blogService.getBlogByPage(currentPage, numsPerPage);
+		nav.setViewName("home/index");
+		nav.addObject("page", page);
 		return nav;
 	}
 

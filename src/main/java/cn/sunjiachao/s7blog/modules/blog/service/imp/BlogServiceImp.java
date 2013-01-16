@@ -7,6 +7,8 @@ import cn.sunjiachao.s7common.model.Blog;
 import cn.sunjiachao.s7common.model.BlogParams;
 import cn.sunjiachao.s7common.model.dto.BlogBodyDto;
 import cn.sunjiachao.s7common.model.dto.BlogShortBodyDto;
+import cn.sunjiachao.s7common.model.web.Page;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -44,4 +46,9 @@ public class BlogServiceImp implements IBlogService {
     public BlogBodyDto getBlog(int id) {
         return blogDao.getBlog(id);
     }
+
+	@Override
+	public Page<BlogShortBodyDto> getBlogByPage(int currentPage, int numsPerPage) {
+		return blogDao.getBlogByPage(currentPage, numsPerPage);
+	}
 }
