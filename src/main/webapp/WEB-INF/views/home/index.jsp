@@ -21,12 +21,23 @@
 	</c:forEach>
 	<div class="pagination" style="text-align: center;" >
 		<ul>
-			<li><a href="#">Prev</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">Next</a></li>
+			<li><a href="<%=basePath%>1">First</a></li>
+			<c:choose>
+				<c:when test="${page.currentPage != 1 }">
+					<li><a href="<%=basePath%>${(page.currentPage)-1}">Prev</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="javascript:void(0);">Prev</a></li>
+				</c:otherwise>
+			</c:choose>
+			<c:if test="${page.currentPage != 1}">
+				<li><a href="<%=basePath%>${(page.currentPage)-1}">${(page.currentPage)-1}</a></li>
+			</c:if>
+			<li><a href="<%=basePath%>${(page.currentPage)}">${(page.currentPage)}</a></li>
+			<li><a href="<%=basePath%>${(page.currentPage)+1}">${(page.currentPage)+1}</a></li>
+			<li><a href="<%=basePath%>${(page.currentPage)+2}">${(page.currentPage)+2}</a></li>
+			<li><a href="<%=basePath%>${(page.currentPage)+1}">Next</a></li>
+			<li><a href="<%=basePath%>${page.totalPages}">Last</a></li>
 		</ul>
 	</div>
 

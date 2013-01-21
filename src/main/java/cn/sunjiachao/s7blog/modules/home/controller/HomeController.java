@@ -24,7 +24,7 @@ import cn.sunjiachao.s7common.model.web.Page;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(HomeController.class);  
+			.getLogger(HomeController.class);
 
 	@Autowired
 	private IBlogService blogService;
@@ -36,19 +36,27 @@ public class HomeController {
 		nav.addObject("blogs", bds);
 		return nav;
 	}
-	
-	//@RequestMapping("/spring-web/{symbolicName:[a-z-]+}-{version:\d\.\d\.\d}.{extension:\.[a-z]}")
+
 	@RequestMapping(value = "/{currentPage}", method = RequestMethod.GET)
-	public ModelAndView getBlogsByPage(@PathVariable String currentPage){
-		
-//		String currentPage = req.getParameter("p");
-        if (currentPage == null || currentPage.equals("")) {
-                currentPage = "1";
-        }
+	public ModelAndView getBlogsByPage(@PathVariable String currentPage) {
+
+		// String currentPage = req.getParameter("p");
+		if (currentPage == null || currentPage.equals("")) {
+			currentPage = "1";
+		}
 
 		ModelAndView nav = new ModelAndView();
-		Page<BlogShortBodyDto> page = blogService.getBlogByPage(Integer.parseInt(currentPage), 7);
+		Page<BlogShortBodyDto> page = blogService.getBlogByPage(
+				Integer.parseInt(currentPage), 7);
 		nav.setViewName("home/index");
+		nav.addObject("page", page);
+		return nav;
+	}
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView toHomePage() {
+		ModelAndView nav = new ModelAndView("home/index");
+		Page<BlogShortBodyDto> page = blogService.getBlogByPage(0, 7);
 		nav.addObject("page", page);
 		return nav;
 	}
