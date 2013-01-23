@@ -49,4 +49,17 @@
         <put-attribute name="body" value="/WEB-INF/views/user/login.jsp"/>
     </definition>
 
+    <!--test -->
+    <definition name="test_template" template="/WEB-INF/views/layout/common_no_leftslide.jsp">
+        <put-attribute name="title" value="Template"/>
+        <put-attribute name="jscss" value="/WEB-INF/views/layout/jscss/jscss_common.jsp"/>
+        <put-attribute name="header" value=""/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value=""/>
+    </definition>
+    <definition name="test/form" extends="test_template">
+        <put-attribute name="title" value="test"/>
+        <put-attribute name="body" value="/WEB-INF/views/test/form.jsp"/>
+    </definition>
+
 </tiles-definitions>

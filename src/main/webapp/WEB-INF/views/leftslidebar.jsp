@@ -20,12 +20,28 @@
             <div class="one_cate">随便写写</div>
             <div class="one_cate">随便写写</div>
         </div>
+        <div>
+            <input type="button" value="test" id="testbtn"/>
+        </div>
     </div>
 </div>
 
-<style>
+<div id="testdialog" style="display: none;">
 
-    .one_cate{
+</div>
+<script src="<%=basePath%>resources/plugin/jquery.blockUI.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#testbtn").click(function () {
+            $("#testdialog").load("<%=basePath%>test");
+            $.unblockUI();
+            $.blockUI({message: $("#testdialog")})
+        });
+    });
+</script>
+
+<style>
+    .one_cate {
         width: 80px;
         background: #d3d3d3;
         float: left;

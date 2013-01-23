@@ -23,42 +23,49 @@ import cn.sunjiachao.s7common.model.web.Page;
 @Controller
 public class HomeController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(HomeController.class);
+    private static final Logger logger = LoggerFactory
+            .getLogger(HomeController.class);
 
-	@Autowired
-	private IBlogService blogService;
+    @Autowired
+    private IBlogService blogService;
 
-	@RequestMapping(value = "/old", method = RequestMethod.GET)
-	public ModelAndView getHomePageBlogs() {
-		List<BlogShortBodyDto> bds = blogService.getAllBlogDtos();
-		ModelAndView nav = new ModelAndView("home/index");
-		nav.addObject("blogs", bds);
-		return nav;
-	}
+    @RequestMapping(value = "/old", method = RequestMethod.GET)
+    public ModelAndView getHomePageBlogs() {
+        List<BlogShortBodyDto> bds = blogService.getAllBlogDtos();
+        ModelAndView nav = new ModelAndView("home/index");
+        nav.addObject("blogs", bds);
+        return nav;
+    }
 
-	@RequestMapping(value = "/{currentPage}", method = RequestMethod.GET)
-	public ModelAndView getBlogsByPage(@PathVariable String currentPage) {
+    @RequestMapping(value = "/{currentPage}", method = RequestMethod.GET)
+    public ModelAndView getBlogsByPage(@PathVariable String currentPage) {
 
-		// String currentPage = req.getParameter("p");
-		if (currentPage == null || currentPage.equals("")) {
-			currentPage = "1";
-		}
+        // String currentPage = req.getParameter("p");
+        if (currentPage == null || currentPage.equals("")) {
+            currentPage = "1";
+        }
 
-		ModelAndView nav = new ModelAndView();
-		Page<BlogShortBodyDto> page = blogService.getBlogByPage(
-				Integer.parseInt(currentPage), 7);
-		nav.setViewName("home/index");
-		nav.addObject("page", page);
-		return nav;
-	}
+        ModelAndView nav = new ModelAndView();
+        Page<BlogShortBodyDto> page = blogService.getBlogByPage(
+                Integer.parseInt(currentPage), 7);
+        nav.setViewName("home/index");
+        nav.addObject("page", page);
+        return nav;
+    }
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView toHomePage() {
-		ModelAndView nav = new ModelAndView("home/index");
-		Page<BlogShortBodyDto> page = blogService.getBlogByPage(0, 7);
-		nav.addObject("page", page);
-		return nav;
-	}
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView toHomePage() {
+        ModelAndView nav = new ModelAndView("home/index");
+        Page<BlogShortBodyDto> page = blogService.getBlogByPage(0, 7);
+        nav.addObject("page", page);
+        return nav;
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ModelAndView toTestPage() {
+        ModelAndView mav = new ModelAndView("test/form");
+        mav.addObject("name","王紫");
+        return mav;
+    }
 
 }

@@ -11,9 +11,11 @@
 <body>
 
 <div id="page">
+
     <div id="header">
         <tiles:insertAttribute name="header"/>
     </div>
+
     <div id="body" class="container">
         <div class='row-fluid'>
             <tiles:insertAttribute name="leftslidebar"/>

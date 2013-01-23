@@ -13,3 +13,4 @@
       media="screen"/>
 <script src="<%=basePath%>resources/plugin/jquery.js" type="text/javascript"></script>
 <script src="<%=basePath%>resources/plugin/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<%=basePath%>resources/plugin/jquery.blockUI.js" type="text/javascript"></script>
