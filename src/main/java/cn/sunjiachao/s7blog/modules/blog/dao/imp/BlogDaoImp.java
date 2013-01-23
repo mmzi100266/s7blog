@@ -67,7 +67,7 @@ public class BlogDaoImp implements IBlogDao {
         MapSqlParameterSource p = new MapSqlParameterSource();
         p.addValue("start", startIndex).addValue("end", numsPerPage);
         List<BlogShortBodyDto> list = jdbcTemplate.query(sql_page, p, new BlogShortBodyDtoRowMapper());
-        Page<BlogShortBodyDto> page = new Page<>(list, totalRows, currentPage, numsPerPage);
+        Page<BlogShortBodyDto> page = new Page<BlogShortBodyDto>(list, totalRows, currentPage, numsPerPage);
         return page;
     }
 }
